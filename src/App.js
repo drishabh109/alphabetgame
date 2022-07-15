@@ -4,13 +4,14 @@ import './App.css';
 import Button from './button';
 
 function App() {
+  
   let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let random = alphabet[Math.floor(Math.random() * alphabet.length)];
   const [char, setChar] = useState("A");
   const [input, setInput] = useState("A");
   const [time, setTime] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const [isPaused, setIsPaused] = useState(true);
+  const [active, setActive] = useState(false);
+  const [paused, setPaused] = useState(true);
 
   const onchange = (e) => {
     let b = random;
@@ -28,8 +29,8 @@ function App() {
       setChar("Sucees");
       setTime(false);
       localStorage.setItem('highScore', time);
-      setIsActive(false);
-      setIsPaused(true);
+      setActive(false);
+      setPaused(true);
     }
   }
 
@@ -39,7 +40,7 @@ function App() {
 
   useEffect(() => {
     let interval = null;
-    if (isActive && isPaused === false) {
+    if (active && paused === false) {
       interval = setInterval(() => {
         setTime((time) => time + 10);
       }, 10)
@@ -50,19 +51,19 @@ function App() {
     return () => {
       clearInterval(interval);
     }
-  }, [isActive, isPaused])
+  }, [active, paused])
 
   const highScore = localStorage.getItem('highScore') ? localStorage.getItem('highScore') : 0;
 
   const handleStart = () => {
-    setIsActive(true);
-    setIsPaused(false);
+    setActive(true);
+    setPaused(false);
   }
 
   const handleReset = () => {
     setChar("A");
     setInput("A");
-    setIsActive(false);
+    setActive(false);
     setTime(0);
   }
 
@@ -73,8 +74,8 @@ function App() {
         <h6>Typing game to see how fast you type.Timer<br />starts when you do :)</h6>
         <div className='ab'><h1>{char}</h1></div>
         <h6>Time :<br /> {time / 1000} sec <br /><br />My best time is : {highScore / 1000} sec</h6>
-        <footer><input type="type" onKeyUp={onchange} disabled={!isActive} /> </footer>
-        <Button isActive={isActive || input.length >= 20} handleReset={handleReset} handleStart={handleStart} />
+        <footer><input type="type" onKeyUp={onchange} disabled={!active} /> </footer>
+        <Button isActive={active || input.length >= 20} handleReset={handleReset} handleStart={handleStart} />
       </header>
     </div>
   );
