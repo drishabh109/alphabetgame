@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/alphabetgame/static/css/main.ef4f168e.css",
+    "main.js": "/alphabetgame/static/js/main.6a816385.js",
+    "index.html": "/alphabetgame/index.html",
+    "main.ef4f168e.css.map": "/alphabetgame/static/css/main.ef4f168e.css.map",
+    "main.6a816385.js.map": "/alphabetgame/static/js/main.6a816385.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef4f168e.css",
+    "static/js/main.6a816385.js"
+  ]
+}
